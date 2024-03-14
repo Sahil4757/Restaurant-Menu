@@ -1,14 +1,29 @@
-// finall codeeeeeeeee in progresssssssssss
+//FINAL
 #include<iostream>
+#include<vector>
 using namespace std;
 
-void menu ();
+class OrderItem {
+    private:
+        string name;
+        int price;
+        int quantity;
+public:
+    OrderItem(const string& name, int price, int quantity) : name(name), price(price), quantity(quantity) {}
+
+    string getName() const { return name; }
+    int getPrice() const { return price; }
+    int getQuantity() const { return quantity; }
+};
+
+void menu();
+void displayFinalOrder(const vector<OrderItem>& orderItems);
 
 int main()
 {
     char name[50], gotostart;
     int choice = 0, pchoice, pchoice2, quantity = 0;
-
+    vector<OrderItem> orderItems;
 
     cout << "--------------Welcome to Sunshine Restaurant-------------\n\n";
     cout << "What should we call you ? ";
@@ -33,10 +48,12 @@ int main()
     cout << "Please enter your choice : " << endl;
     cin >> choice;
 
+    string itemName;
+
     switch (choice)
     {
     case 1:
-     menu();
+        menu();
         cout << "1) Veggie Feast\n2) Margherita\n3) Spiced Paneer\n4) Chicken Sausage\n5) Pepperonni Pizza\n";
         cout << "Enter your preferred flavor (1-5): ";
         cin >> pchoice;
@@ -46,7 +63,7 @@ int main()
             cout << "Choose a size (1-3): ";
             cin >> pchoice2;
 
-            if (pchoice2 >= 1 && pchoice2 <= 3){
+            if (pchoice2 >= 1 && pchoice2 <= 3) {
                 cout << "Please enter quantity : ";
                 cin >> quantity;
 
@@ -62,40 +79,41 @@ int main()
                         choice = 600 * quantity;
                         break;
                 }
-                system("CLS");
+                system ("CLS");
 
                 cout << "--------Your Order--------\n";
-                switch (pchoice)
-                {
-                    case 1:
-                        cout << quantity << " Veggie Feast\n";
-                        break;
-                    case 2:
-                        cout << quantity << " Margherita\n";
-                        break;
-                    case 3:
-                        cout << quantity << " Spiced Paneer\n";
-                        break;
-                    case 4:
-                        cout << quantity << " Chicken Sausage\n";
-                        break;
-                    case 5:
-                        cout << quantity << " Pepperonni Pizza\n";
-                        break;
-                }
-
-                cout << "Your Total Bill is : " << choice << endl;
-                cout << "Thank you for Ordering\n";
-                cout << "Would you like to order something else? (Y) (N) : ";
-                cin >> gotostart;
-                if (gotostart == 'Y' || gotostart == 'y'){
-                    goto beginning;
-                }
+                
+            switch (pchoice)
+            {
+                case 1:
+                    itemName = "Veggie Feast";
+                    break;
+                case 2:
+                    itemName = "Margherita";
+                    break;
+                case 3:
+                    itemName = "Spiced Paneer";
+                    break;
+                case 4:
+                    itemName = "Chicken Sausage";
+                    break;
+                case 5:
+                    itemName = "Pepperonni Pizza";
+                    break;
             }
+
+        // Add the item to orderItems with the correct name
+            orderItems.push_back(OrderItem(string(itemName), choice, quantity));
+            system("CLS");
+
+            cout << "--------Your Order--------\n";
+            cout << quantity << " " << itemName << endl;
+            cout << "Your Total Bill is : " << choice << endl;
         }
+    }
         break;
 
-    case 2:
+        case 2:
         menu();
         cout << "1) Chrispy Chicken   Rs 200\n2) Veggie Burger   Rs 140\n3) Aloo Tikki Burger   Rs 160\n4) Spicy Chicken   Rs 180\n";
         cout << "Which burger would you prefer (1-4) : ";
@@ -123,29 +141,29 @@ int main()
             system("CLS");
 
             cout << "--------Your Order--------\n";
+            
+
             switch (pchoice)
             {
                 case 1:
-                    cout << quantity << " Chrispy Chicken\n";
+                    itemName = " Chrispy Chicken\n";
                     break;
                 case 2:
-                    cout << quantity << " Veggie Burger\n";
+                    itemName = " Veggie Burger\n";
                     break;
                 case 3:
-                    cout << quantity << " Aloo Tikki Burger\n";
+                    itemName = " Aloo Tikki Burger\n";
                     break;
                 case 4:
-                    cout << quantity << " Spicy Chicken\n";
+                    itemName = " Spicy Chicken\n";
                     break;
             }
-
+            orderItems.push_back(OrderItem(string(itemName), choice, quantity));
+            system("CLS");
+            
+            cout << "--------Your Order--------\n";
+            cout << quantity << " " << itemName << endl;
             cout << "Your Total Bill is : " << choice << endl;
-            cout << "Thank you for Ordering\n";
-            cout << "Would you like to order something else? (Y/N): ";
-            cin >> gotostart;
-            if (gotostart == 'Y' || gotostart == 'y'){
-                goto beginning;
-            }
         }
         break;
 
@@ -174,26 +192,26 @@ int main()
             system("CLS");
 
             cout << "--------Your Order--------\n";
+            
+
             switch (pchoice)
             {
                 case 1:
-                    cout << quantity << " Aloo Pattie sandwich\n";
+                    itemName = " Aloo Pattie sandwich\n";
                     break;
                 case 2:
-                    cout << quantity << " Tandoori Chicken sandwich\n";
+                    itemName = " Tandoori Chicken sandwich\n";
                     break;
                 case 3:
-                    cout << quantity << " Peri Peri Chicken\n";
+                    itemName = " Peri Peri Chicken\n";
                     break;
             }
+            orderItems.push_back(OrderItem(string(itemName), choice, quantity));
+            system("CLS");
 
+            cout << "--------Your Order--------\n";
+            cout << quantity << " " << itemName << endl;
             cout << "Your Total Bill is : " << choice << endl;
-            cout << "Thank you for Ordering\n";
-            cout << "Would you like to order something else? (Y) (N): ";
-            cin >> gotostart;
-            if (gotostart == 'Y' || gotostart == 'y'){
-                goto beginning;
-            }
         }
         break;
 
@@ -222,26 +240,26 @@ int main()
             system("CLS");
 
             cout << "--------Your Order--------\n";
+            
+
             switch (pchoice)
             {
                 case 1:
-                    cout << quantity << " Chicken Teriyaki roll\n";
+                    itemName = " Chicken Teriyaki roll\n";
                     break;
                 case 2:
-                    cout << quantity << " New Sig wrap\n";
+                    itemName = " New Sig wrap\n";
                     break;
                 case 3:
-                    cout << quantity << " Corn peas signature wrap \n";
+                    itemName = " Corn peas signature wrap \n";
                     break;
             }
-            
+            orderItems.push_back(OrderItem(string(itemName), choice, quantity));
+            system("CLS");
+
+            cout << "--------Your Order--------\n";
+            cout << quantity << " " << itemName << endl;
             cout << "Your Total Bill is : " << choice << endl;
-            cout << "Thank you for Ordering\n";
-            cout << "Would you like to order something else? (Y) (N): ";
-            cin >> gotostart;
-            if (gotostart == 'Y' || gotostart == 'y'){
-                goto beginning;
-            }
         }
         break;
 
@@ -273,27 +291,28 @@ int main()
         system("CLS");
 
         cout << "--------Your Order--------\n";
+        
+
             switch (pchoice)
             {
                 case 1:
-                    cout << quantity << " Chicken  biryani\n";
+                    itemName = " Chicken  biryani\n";
                     break;
                 case 2:
-                    cout << quantity << " Mutton biryani\n";
+                    itemName = " Mutton biryani\n";
                     break;
                 case 3:
-                    cout << quantity << " Egg biryani \n";
+                    itemName = " Egg biryani \n";
                     break;
             }
             
+            orderItems.push_back(OrderItem(string(itemName), choice, quantity));
+            system("CLS");
+
+            cout << "--------Your Order--------\n";
+            cout << quantity << " " << itemName << endl;
             cout << "Your Total Bill is : " << choice << endl;
-            cout << "Thank you for Ordering\n";
-            cout << "Would you like to order something else? (Y) (N): ";
-            cin >> gotostart;
-            if (gotostart == 'Y' || gotostart == 'y'){
-                goto beginning;
-            }
-            break;
+        break;
 
     case 6:
         menu();
@@ -321,26 +340,27 @@ int main()
             system("CLS");
 
         cout << "--------Your Order--------\n";
+        
+
         switch (pchoice)
         {
             case 1:
-                cout << quantity << " Veggie delight salad \n";
+                itemName = " Veggie delight salad \n";
                 break;
             case 2:
-                cout << quantity << " Corn & peas salad \n";
+                itemName = " Corn & peas salad \n";
                 break;
             case 3:
-                cout << quantity << " Peri-Peri chicken salad \n";
+                itemName = " Peri-Peri chicken salad \n";
                 break;
         }
             
-        cout << "Your Total Bill is : " << choice << endl;
-        cout << "Thank you for Ordering\n";
-        cout << "Would you like to order something else? (Y) (N): ";
-        cin >> gotostart;
-        if (gotostart == 'Y' || gotostart == 'y'){
-            goto beginning;
-        }
+        orderItems.push_back(OrderItem(string(itemName), choice, quantity));
+        system("CLS");
+
+            cout << "--------Your Order--------\n";
+            cout << quantity << " " << itemName << endl;
+            cout << "Your Total Bill is : " << choice << endl;
         break;
 
     case 7:
@@ -349,7 +369,7 @@ int main()
         cout << "Enter your preferenece( 1-3)";
         cin >> pchoice;
 
-        if ( pchoice >= 1 && pchoice <= 3) {
+        if (pchoice >= 1 && pchoice <= 3) {
             cout << "Enter quantity: ";
             cin >> quantity;
         }
@@ -369,25 +389,26 @@ int main()
         system("CLS");
 
         cout << "--------Your Order--------\n";
-            switch (pchoice)
+        
+        
+        switch (pchoice)
             {
             case 1:
-                cout << quantity << " Mineral Water \n";
+                itemName = " Mineral Water \n";
                 break;
             case 2:
-                cout << quantity << "Coke \n";
+                itemName = "Coke \n";
                 break;
             case 3:
-                cout << quantity << " Cold Coffee \n";
+                itemName = " Cold Coffee \n";
                 break;
             }
+            orderItems.push_back(OrderItem(string(itemName), choice, quantity));
+            system("CLS");
+
+            cout << "--------Your Order--------\n";
+            cout << quantity << " " << itemName << endl;
             cout << "Your Total Bill is : " << choice << endl;
-            cout << "Thank you for Ordering\n";
-            cout << "Would you like to order something else? (Y) (N): ";
-            cin >> gotostart;
-            if (gotostart == 'Y' || gotostart == 'y') {
-                goto beginning;
-            }
             break;
 
     case 8:
@@ -416,38 +437,47 @@ int main()
         system("CLS");
 
         cout << "--------Your Order--------\n";
+    
+
             switch (pchoice)
             {
             case 1:
-                cout << quantity << " Chocolate Cake\n";
+                itemName =  " Chocolate Cake\n";
                 break;
             case 2:
-                cout << quantity << " Cheese Cake\n";
+                itemName =  " Cheese Cake\n";
                 break;
             case 3:
-                cout << quantity << " Brownie\n";
+                itemName =  " Brownie\n";
                 break;
             }
+            orderItems.push_back(OrderItem(string(itemName), choice, quantity));
+            system("CLS");
+
+            cout << "--------Your Order--------\n";
+            cout << quantity << " " << itemName << endl;
             cout << "Your Total Bill is : " << choice << endl;
-            cout << "Thank you for Ordering\n";
-            cout << "Would you like to order something else? (Y) (N): ";
-            cin >> gotostart;
-            if (gotostart == 'Y' || gotostart == 'y') {
-                goto beginning;
-            }
             break;
 
     case 0:
+        cout << "Exit successful...";
         exit(0);
+        break;
 
     default:
-        cout <<"Invalid Input Exiting...";
+        cout << "Invalid Input Exiting...";
         exit (0);
         break;
     }
 
-    cout << "------Your Final Order-----" << endl;
-    
+    cout << "Would you like to order something else? (Y/N): ";
+    cin >> gotostart;
+    if (gotostart == 'Y' || gotostart == 'y'){
+        goto beginning;
+    }
+
+    // Display final order
+    displayFinalOrder(orderItems);
 
     return 0;
 }
@@ -456,4 +486,16 @@ void menu() {
     cout << "*****************************************************************************" << endl;
     cout <<                            "\t\t\t\t\tMENU" << endl;
     cout << "*****************************************************************************" << endl;
+}
+
+void displayFinalOrder(const vector<OrderItem>& orderItems) {
+    system("CLS");
+    cout << "---------  Your Final Order  --------" << endl;
+    int totalBill = 0;
+    for (const auto& item : orderItems) {
+        cout << item.getQuantity() << " " << item.getName() << " - Rs " << item.getPrice() << " each" << endl;
+        totalBill += item.getPrice() * item.getQuantity();
+    }
+    cout << "Total Bill: Rs " << totalBill << endl;
+    cout << "******************************************************************************";
 }
